@@ -73,7 +73,6 @@ function getNavigation({
   t,
   enabledAppsNumber,
   installedAppsNumber,
-  enabledWorkflowsNumber,
 }: getNavigationProps) {
   const duration = multipleDuration?.map((duration) => ` ${duration}`) || length;
 
@@ -103,12 +102,12 @@ function getNavigation({
       //TODO: Handle proper translation with count handling
       info: `${installedAppsNumber} apps, ${enabledAppsNumber} ${t("active")}`,
     },
-    {
+    /* {
       name: "workflows",
       href: `/event-types/${id}?tabName=workflows`,
       icon: "zap",
       info: `${enabledWorkflowsNumber} ${t("active")}`,
-    },
+    }, */
   ] satisfies VerticalTabItemProps[];
 }
 
