@@ -4,12 +4,10 @@ on:
   pull_request:
     branches:
       - "funnelhub"
-    paths:
-      - "apps/web/**"
-  workflow_dispatch:
 
 env:
   NODE_OPTIONS: --max-old-space-size=4096
+  NEXT_PUBLIC_API_V2_URL: ${{ secrets.NEXT_PUBLIC_API_V2_URL }}
 
 jobs:
   continuous-integration:
@@ -65,4 +63,6 @@ jobs:
             ${{ runner.os }}-web-${{ env.cache-name }}-
 
       - name: Build project
-        run: SKIP_ENV_CHECK=true yarn turbo run build --cache-dir=.turbo --filter=web
+        env:
+          SKIP_ENV_CHECK: true
+        run: yarn turbo run build --cache-dir=.turbo --filter=web

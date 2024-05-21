@@ -1,0 +1,22 @@
+{
+  "name": "@calcom/platform-types",
+  "version": "0.0.0",
+  "main": "./dist/index.js",
+  "types": "./dist/index.js",
+  "scripts": {
+    "build": "tsc --build --force tsconfig.json",
+    "build:watch": "tsc --build --force ./tsconfig.json --watch",
+    "post-install": "yarn build"
+  },
+  "dependencies": {
+    "@calcom/platform-constants": "*",
+    "@nestjs/swagger": "^7.3.0",
+    "@types/express": "^4.17.21",
+    "class-transformer": "^0.5.1",
+    "class-validator": "^0.14.0",
+    "luxon": "^3.4.4"
+  },
+  "devDependencies": {
+    "@types/luxon": "^3.3.7"
+  }
+}
