@@ -4,9 +4,6 @@ on:
   pull_request:
     branches:
       - "funnelhub"
-    paths:
-      - "apps/web/**"
-  workflow_dispatch:
 
 env:
   NODE_OPTIONS: --max-old-space-size=4096
