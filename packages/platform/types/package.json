@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@calcom/platform-constants": "*",
+    "@nestjs/swagger": "^7.3.0",
     "@types/express": "^4.17.21",
+    "class-transformer": "^0.5.1",
     "class-validator": "^0.14.0"
   }
 }
