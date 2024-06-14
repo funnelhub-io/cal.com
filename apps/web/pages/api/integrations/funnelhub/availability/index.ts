@@ -32,5 +32,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     eventTypeId,
   });
 
-  return res.status(200).json(availability);
+  res.status(200).json(availability);
+  return;
 }
