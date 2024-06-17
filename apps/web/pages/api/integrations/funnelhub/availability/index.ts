@@ -1,3 +1,4 @@
+import { errorsHandler } from "@pages/api/integrations/funnelhub/errorsHandler";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 
@@ -24,14 +25,18 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   const { dateFrom, dateTo, eventTypeId, username } = queryParamsSchema.parse(req.query);
 
-  const availability = await getUserAvailability({
-    dateFrom,
-    dateTo,
-    returnDateOverrides: false,
-    username,
-    eventTypeId,
-  });
+  try {
+    const availability = await getUserAvailability({
+      dateFrom,
+      dateTo,
+      returnDateOverrides: false,
+      username,
+      eventTypeId,
+    });
 
-  res.status(200).json(availability);
-  return;
+    res.status(200).json(availability);
+    return;
+  } catch (error) {
+    return errorsHandler(error, req, res);
+  }
 }
