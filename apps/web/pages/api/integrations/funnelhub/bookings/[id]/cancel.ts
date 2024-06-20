@@ -1,3 +1,4 @@
+import { errorsHandler } from "@pages/api/integrations/funnelhub/errorsHandler";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { z } from "zod";
 
@@ -23,8 +24,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
 
   req.body = { id, allRemainingBookings, cancellationReason };
 
-  const cancelled = await handleCancelBooking(req);
+  try {
+    const cancelled = await handleCancelBooking(req);
 
-  res.status(req.statusCode ?? 200).json(cancelled);
-  return;
+    res.status(req.statusCode ?? 200).json(cancelled);
+    return;
+  } catch (error) {
+    return errorsHandler(error, req, res);
+  }
 }
